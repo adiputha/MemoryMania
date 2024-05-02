@@ -42,8 +42,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     }
 
     private fun observeViewModel() {
-        gameViewModel.score.observe(this) { score ->
-            binding.playerScore.text = score.toString()
+        gameViewModel.score.observe(this) { currentScore ->
+            binding.playerScore.text = currentScore.toString()
+            println(currentScore)
         }
 
         gameViewModel.highScore.observe(this) { highScore ->

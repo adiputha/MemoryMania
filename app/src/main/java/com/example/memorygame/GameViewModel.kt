@@ -34,7 +34,7 @@ class GameViewModel : ViewModel() {
     }
 
     fun startGame(targetViews: List<Button>) {
-        resetGameState()
+
         viewModelScope.launch {
             val round = (3..5).random()
             repeat(round) {
@@ -54,13 +54,18 @@ class GameViewModel : ViewModel() {
         val currentUserAnswer = userAnswer.value ?: ""
         _userAnswer.value = currentUserAnswer + panelId.toString()
         if (_userAnswer.value == _result.value) {
-            updateScore()
+            incrementScore()
             startGame(targetViews)
         } else if ((_userAnswer.value?.length ?: 0) >= (_result.value?.length ?: 0)) {
             viewModelScope.launch {
                 loseAnimation(targetViews)
             }
         }
+    }
+
+    private fun incrementScore(){
+        _score.value = (_score.value ?: 0) + 1
+        updateScore()
     }
 
     private fun resetGameState() {
@@ -70,16 +75,18 @@ class GameViewModel : ViewModel() {
     }
 
     private fun updateScore() {
-        _score.value = (_score.value ?: 0) + 1
-        _score.value?.let { score ->
-            if (score > (_highScore.value ?: 0)) {
-                _highScore.value = score
-                saveHighScore(score)
-            }
+        val currentScore = (_score.value ?: 0) + 1  // Increment score
+        _score.value = currentScore
+        if (currentScore > (_highScore.value ?: 0)) {
+            _highScore.value = currentScore
+            saveHighScore(currentScore)
         }
     }
 
+
+
     private fun loseAnimation(targetViews: List<Button>) {
+
         viewModelScope.launch {
             _score.value = 0
             targetViews.forEach { view ->
@@ -88,6 +95,7 @@ class GameViewModel : ViewModel() {
                 view.background = AppCompatResources.getDrawable(view.context, R.drawable.btn_state)
             }
             delay(1000)
+            resetGameState()
             startGame(targetViews)
         }
     }
