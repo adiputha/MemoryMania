@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#c9e4fe"
+    android:background="#78b3d0"
 
     tools:context=".StartActivity">
 
 
     <ImageView
         android:id="@+id/imageViewLogo"
-        android:layout_width="246dp"
-        android:layout_height="285dp"
+        android:layout_width="278dp"
+        android:layout_height="391dp"
         android:src="@drawable/logo"
         app:layout_constraintBottom_toTopOf="@+id/buttonStart"
         app:layout_constraintEnd_toEndOf="parent"

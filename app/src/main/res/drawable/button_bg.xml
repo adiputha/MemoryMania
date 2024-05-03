@@ -5,7 +5,7 @@
 
             android:shape="rectangle">
 
-            <solid android:color="@color/shadeBlue" />
+            <solid android:color="@color/btn_extra" />
             <corners android:radius="8dp" />
 
             <padding
@@ -16,8 +16,8 @@
 
             <gradient
                 android:angle="135"
-                android:endColor="@color/darkShadeBlue"
-                android:startColor="@color/lightShadeBlue" />
+                android:endColor="@color/btn_extra"
+                android:startColor="@color/btn_extra" />
         </shape>
     </item>
 </selector>

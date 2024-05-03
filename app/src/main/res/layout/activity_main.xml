@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#c9e4fe"
+    android:background="#78b3d0"
     tools:context=".MainActivity">
 
     <TextView
@@ -125,6 +125,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023"
-        app:srcCompat="@drawable/back_btn" />
+        app:srcCompat="@drawable/back_btn"
+        android:background="@color/btn_extra"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

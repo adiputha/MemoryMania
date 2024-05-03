@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.memorygame.databinding.ActivityMainBinding
 import com.example.memorygame.databinding.ActivitySettingsBinding
 
@@ -26,12 +27,15 @@ class SettingsActivity : AppCompatActivity() {
 
         val soundEnabled = loadSettings()
 
+
+
         binding.switchSound.isChecked = soundEnabled
 
         binding.switchSound.setOnCheckedChangeListener { _, isChecked ->
+            Log.d("buttoooon", isChecked.toString())
             if (isChecked) {
                 startBackgroundMusic()
-            } else {
+            } else  {
                 stopBackgroundMusic()
             }
             saveSettings(isChecked)
@@ -44,6 +48,15 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        val soundEnabled = loadSettings()
+        binding.switchSound.isChecked = soundEnabled
+        Log.d("Settings", "Switch state updated: $soundEnabled")
+
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         // Release the MediaPlayer when the activity is destroyed
@@ -54,6 +67,7 @@ class SettingsActivity : AppCompatActivity() {
         val editor = sharedPreferences.edit()
         editor.putBoolean("sound_enabled", soundEnabled)
         editor.apply()
+        Log.d("Settings", "Sound enabled saved: $soundEnabled")
     }
 
     private fun loadSettings(): Boolean {
@@ -70,6 +84,7 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun stopBackgroundMusic() {
+        Log.d("Media player", "stopBackgroundMusic: ")
         mediaPlayer?.pause()
     }
 }
