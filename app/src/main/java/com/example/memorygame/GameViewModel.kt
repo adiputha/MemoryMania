@@ -64,7 +64,7 @@ class GameViewModel : ViewModel() {
     }
 
     private fun incrementScore(){
-
+        (_score.value ?: 0) + 1
         updateScore()
     }
 

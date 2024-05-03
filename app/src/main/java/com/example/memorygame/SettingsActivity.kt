@@ -32,7 +32,7 @@ class SettingsActivity : AppCompatActivity() {
         binding.switchSound.isChecked = soundEnabled
 
         binding.switchSound.setOnCheckedChangeListener { _, isChecked ->
-            Log.d("buttoooon", isChecked.toString())
+            Log.d("button", isChecked.toString())
             if (isChecked) {
                 startBackgroundMusic()
             } else  {
@@ -44,6 +44,10 @@ class SettingsActivity : AppCompatActivity() {
         binding.buttonSave.setOnClickListener {
             val isChecked = binding.switchSound.isChecked
             saveSettings(isChecked)
+
+        }
+
+        binding.buttonSettingsBack.setOnClickListener{
             startActivity(Intent(this@SettingsActivity, StartActivity::class.java))
         }
     }
